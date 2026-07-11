@@ -1,129 +1,160 @@
-const LEAD_CAPTURE_ENDPOINT = "";
-const LEADS_STORAGE_KEY = "zentech_leads";
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/1iWgK8nm2JSOgSI3EHjzgqiA-JiCGWnM2b0B-sU9Nfhs/edit";
+const CONTACT_FORM_ENDPOINT = "";
+const LEGACY_LEAD_STORAGE_KEYS = ["zentech_leads"];
 
 const form = document.querySelector("#interestForm");
 const note = document.querySelector("#formNote");
-const downloadButton = document.querySelector("#downloadLeads");
+const submitButton = document.querySelector("#submitInterest");
+const otherInterestField = document.querySelector("#otherInterestField");
 const interestButtons = document.querySelectorAll(".js-interest");
+const errors = {
+  email: document.querySelector("#emailError"),
+  interest: document.querySelector("#interestError"),
+  consent: document.querySelector("#consentError"),
+};
 
-function getLocalLeads() {
+let isSubmitting = false;
+
+function clearLegacyLeadStorage() {
   try {
-    return JSON.parse(localStorage.getItem(LEADS_STORAGE_KEY) || "[]");
+    LEGACY_LEAD_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key));
   } catch {
-    return [];
+    // Storage can be unavailable in private or restricted browsing modes.
   }
 }
 
-function setLocalLeads(leads) {
-  localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(leads));
-  if (downloadButton) {
-    downloadButton.hidden = leads.length === 0;
+function setError(field, message) {
+  if (errors[field]) errors[field].textContent = message;
+}
+
+function clearErrors() {
+  Object.keys(errors).forEach((field) => setError(field, ""));
+}
+
+function setFieldState(field, isInvalid) {
+  if (!field) return;
+  field.setAttribute("aria-invalid", String(isInvalid));
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function validateForm() {
+  if (!form) return false;
+
+  clearErrors();
+  let isValid = true;
+  const fields = form.elements;
+  const email = fields.email.value.trim();
+  const interest = fields.interest.value;
+  const consent = fields.consent.checked;
+
+  if (!email) {
+    setError("email", "Please enter your email address.");
+    setFieldState(fields.email, true);
+    isValid = false;
+  } else if (!isValidEmail(email)) {
+    setError("email", "Please enter a valid email address.");
+    setFieldState(fields.email, true);
+    isValid = false;
+  } else {
+    setFieldState(fields.email, false);
   }
+
+  if (!interest) {
+    setError("interest", "Please select a product.");
+    setFieldState(fields.interest, true);
+    isValid = false;
+  } else {
+    setFieldState(fields.interest, false);
+  }
+
+  if (!consent) {
+    setError("consent", "Please confirm you’d like to receive early access updates.");
+    setFieldState(fields.consent, true);
+    isValid = false;
+  } else {
+    setFieldState(fields.consent, false);
+  }
+
+  return isValid;
 }
 
-function leadToRow(lead) {
-  return [
-    lead.createdAt,
-    lead.name,
-    lead.email,
-    lead.organization,
-    lead.interest,
-    lead.freeTrial,
-    lead.message,
-    lead.sourcePage,
-    "New",
-    "",
-    lead.profile,
-    lead.consent,
-  ];
+function buildSubmissionPayload() {
+  const data = new FormData(form);
+  return {
+    email: data.get("email")?.toString().trim() || "",
+    name: data.get("name")?.toString().trim() || "",
+    interest: data.get("interest")?.toString() || "",
+    otherInterest: data.get("otherInterest")?.toString().trim() || "",
+  };
 }
 
-function escapeCsv(value) {
-  const text = String(value ?? "");
-  return `"${text.replaceAll('"', '""')}"`;
-}
+async function submitToEndpoint(payload) {
+  const response = await fetch(CONTACT_FORM_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
 
-function downloadLocalLeads() {
-  const leads = getLocalLeads();
-  const headers = [
-    "Created At",
-    "Name",
-    "Email",
-    "Organization",
-    "Interest Area",
-    "Free Trial Interest",
-    "Message",
-    "Source Page",
-    "Status",
-    "Notes",
-    "Website / LinkedIn",
-    "Consent",
-  ];
-  const csv = [headers, ...leads.map(leadToRow)]
-    .map((row) => row.map(escapeCsv).join(","))
-    .join("\n");
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "zentech-website-leads.csv";
-  link.click();
-  URL.revokeObjectURL(url);
+  if (!response.ok) {
+    throw new Error("Submission failed");
+  }
 }
 
 interestButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const interest = button.getAttribute("data-interest");
     const select = form?.elements.interest;
-    const freeTrial = form?.elements.freeTrial;
 
     if (select && interest) select.value = interest;
-    if (freeTrial && interest === "Gut Health In and Out") freeTrial.checked = true;
+    updateOtherInterestVisibility();
   });
 });
 
-if (form && note) {
-  setLocalLeads(getLocalLeads());
+function updateOtherInterestVisibility() {
+  if (!form || !otherInterestField) return;
 
-  downloadButton?.addEventListener("click", downloadLocalLeads);
+  const isOther = form.elements.interest.value === "Other";
+  otherInterestField.hidden = !isOther;
+  if (!isOther) form.elements.otherInterest.value = "";
+}
+
+if (form && note && submitButton) {
+  clearLegacyLeadStorage();
+  updateOtherInterestVisibility();
+
+  form.elements.interest.addEventListener("change", updateOtherInterestVisibility);
+  form.elements.interest.addEventListener("input", updateOtherInterestVisibility);
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const data = new FormData(form);
-    const lead = {
-      createdAt: new Date().toISOString(),
-      name: data.get("name") || "",
-      email: data.get("email") || "",
-      organization: data.get("organization") || "",
-      interest: data.get("interest") || "",
-      freeTrial: data.get("freeTrial") || "No",
-      message: data.get("message") || "",
-      sourcePage: window.location.href,
-      profile: data.get("profile") || "",
-      consent: data.get("consent") || "No",
-    };
+    note.textContent = "";
+    updateOtherInterestVisibility();
 
-    const leads = getLocalLeads();
-    leads.push(lead);
-    setLocalLeads(leads);
+    if (isSubmitting || !validateForm()) return;
 
-    if (LEAD_CAPTURE_ENDPOINT) {
-      try {
-        await fetch(LEAD_CAPTURE_ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(lead),
-        });
-        note.textContent = `Thanks, ${lead.name || "there"}. You are on the ${lead.interest} list.`;
-      } catch {
-        note.textContent = `Saved locally. The lead endpoint could not be reached, so export the CSV or check the endpoint.`;
-      }
-    } else {
-      note.innerHTML = `Thanks, ${lead.name || "there"}. Saved locally for this prototype. Connect the Apps Script endpoint to send leads to the Google Sheet database.`;
+    if (!CONTACT_FORM_ENDPOINT) {
+      note.textContent = "Early access registration is being updated. Please try again soon.";
+      return;
     }
 
-    form.reset();
+    isSubmitting = true;
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+
+    try {
+      await submitToEndpoint(buildSubmissionPayload());
+      note.textContent = "You’re on the list! We’ll email you when free trials or early access become available.";
+      form.reset();
+      clearErrors();
+      updateOtherInterestVisibility();
+    } catch {
+      note.textContent = "We couldn’t register your interest. Please try again soon.";
+    } finally {
+      isSubmitting = false;
+      submitButton.disabled = false;
+      submitButton.textContent = "Register Interest";
+    }
   });
 }

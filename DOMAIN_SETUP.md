@@ -117,7 +117,6 @@ DNS changes may work in 30 minutes, but full propagation can take longer. If the
 
 ## Production Checklist
 
-- Connect the lead form to the Google Apps Script endpoint in `script.js`.
 - Confirm both `https://zentech-digital.com` and `https://www.zentech-digital.com` load.
 - Confirm the browser shows a valid HTTPS certificate.
-- Submit one test lead and verify it appears in the Google Sheet database.
+- Confirm the contact form shows the production-safe contact message until a secure backend endpoint is implemented.

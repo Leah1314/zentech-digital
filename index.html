@@ -28,7 +28,7 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#products">Products</a>
         <a href="#principles">Principles</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact">Early Access</a>
       </nav>
     </header>
 
@@ -227,57 +227,47 @@
 
       <section class="contact" id="contact">
         <div class="contact-copy">
-          <p class="eyebrow">Contact ZenTech</p>
-          <h2>Tell us what you are building, researching, or trying to solve.</h2>
+          <p class="eyebrow">Early Access</p>
+          <h2>Become an early user.</h2>
           <p>
-            Register interest in a product, discuss partnerships, or reach out
-            about investment, healthcare, mobility, or mentor collaboration.
+            Register your interest and we’ll email you when free trials or early
+            access become available.
           </p>
         </div>
-        <form class="interest-form" id="interestForm">
-          <label>
-            Name
-            <input name="name" type="text" autocomplete="name" required />
-          </label>
+        <form class="interest-form" id="interestForm" novalidate>
           <label>
             Email
-            <input name="email" type="email" autocomplete="email" required />
+            <input name="email" type="email" autocomplete="email" required aria-describedby="emailError" />
+            <span class="field-error" id="emailError"></span>
           </label>
           <label>
-            Organization
-            <input name="organization" type="text" autocomplete="organization" />
+            Name
+            <input name="name" type="text" autocomplete="name" />
           </label>
-          <label>
-            Interest area
-            <select name="interest" required>
-              <option value="">Select one</option>
+          <label class="full">
+            I’m interested in
+            <select name="interest" required aria-describedby="interestError">
+              <option value="">Select a product</option>
               <option>Get Me a Job / 早点上岸</option>
               <option>Gut Health In and Out</option>
               <option>Patient Experience</option>
-              <option>Driver Safety Prototype</option>
-              <option>Partnership</option>
-              <option>Investment</option>
+              <option>Driver Safety</option>
+              <option>Future ZenTech Products</option>
               <option>Other</option>
             </select>
+            <span class="field-error" id="interestError"></span>
           </label>
-          <label>
-            Website / LinkedIn
-            <input name="profile" type="url" placeholder="https://..." />
-          </label>
-          <label class="checkbox-label">
-            <input name="freeTrial" type="checkbox" value="Yes" />
-            <span>I want to join the Gut Health free trial list</span>
-          </label>
-          <label class="full">
-            Message
-            <textarea name="message" rows="5" placeholder="A few lines about what you want to explore"></textarea>
+          <label class="full other-interest" id="otherInterestField" hidden>
+            Tell us what interests you
+            <input name="otherInterest" type="text" />
           </label>
           <label class="checkbox-label full">
-            <input name="consent" type="checkbox" value="Yes" required />
-            <span>I agree that ZenTech may contact me about this enquiry.</span>
+            <input name="consent" type="checkbox" value="Yes" required aria-describedby="consentError" />
+            <span>I’d like to receive early access invitations and product updates from ZenTech.</span>
           </label>
-          <button class="button primary full" type="submit">Start a conversation</button>
-          <button class="button secondary full" id="downloadLeads" type="button" hidden>Download local test leads</button>
+          <span class="field-error full" id="consentError"></span>
+          <p class="privacy-note full">Your information will only be used for early access invitations and relevant product updates.</p>
+          <button class="button primary full" id="submitInterest" type="submit">Register Interest</button>
           <p class="form-note" id="formNote" role="status"></p>
         </form>
       </section>
