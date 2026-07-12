@@ -135,7 +135,7 @@ if (form && note && submitButton) {
     if (isSubmitting || !validateForm()) return;
 
     if (!CONTACT_FORM_ENDPOINT) {
-      note.textContent = "Early access registration is being updated. Please try again soon.";
+      note.textContent = "Thanks for your interest. We’re finishing the signup flow and will open early access registration soon.";
       return;
     }
 

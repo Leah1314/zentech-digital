@@ -632,10 +632,15 @@ h3 {
 
 label {
   display: grid;
+  align-content: start;
   gap: 8px;
   color: var(--ink);
   font-size: 0.9rem;
   font-weight: 760;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 .checkbox-label {
