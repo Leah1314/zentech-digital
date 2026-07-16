@@ -3,253 +3,280 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AgentQuote | Agent Route Decision Layer</title>
+    <title>ZenTech | Technology Good for Humans</title>
     <meta
       name="description"
-      content="AgentQuote predicts quality, reliability, developer effort, token efficiency, and the best AI agent route before work starts."
+      content="ZenTech is a human-centered technology studio building products for career mobility, gut health, patient experience, and safer mobility."
     />
-    <meta property="og:title" content="AgentQuote | Agent Route Decision Layer" />
+    <link rel="canonical" href="https://zentech-digital.com/" />
+    <meta property="og:title" content="ZenTech | Technology Good for Humans" />
     <meta
       property="og:description"
-      content="Choose the right AI agent route before the run starts."
+      content="Building around unmet needs in the AI era: trust, context, care, prevention, and safer real-world experiences."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zentech-digital.com/" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="AgentQuote home">
-        <span class="brand-mark">AQ</span>
-        <span>AgentQuote</span>
+      <a class="brand" href="#top" aria-label="ZenTech home">
+        <span class="brand-mark">Z</span>
+        <span>ZenTech</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#route">Route</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#how">How it works</a>
+        <a href="#products">Products</a>
+        <a href="#principles">Principles</a>
+        <a href="#contact">Early Access</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="workspace" id="route">
-        <div class="intro-panel">
-          <p class="eyebrow">Agent route intelligence</p>
-          <h1>Choose the right agent before the run starts.</h1>
-          <p class="intro-text">
-            AgentQuote predicts expected quality, agent fit, developer effort,
-            token efficiency, and reliability so teams know when Codex, Claude,
-            open models, local models, or a routed combination makes the most sense.
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Human-centered AI product studio</p>
+          <h1>Technology that is good for humans.</h1>
+          <p class="hero-text">
+            ZenTech builds around the unmet needs of the AI era: trust, context,
+            care, prevention, and safer real-world experiences.
           </p>
-          <div class="intro-metrics" aria-label="Product capabilities">
-            <span>Quality-aware routing</span>
-            <span>Agent fit analysis</span>
-            <span>Token efficiency signals</span>
+          <div class="hero-actions">
+            <a class="button primary" href="#products">Explore products</a>
+            <a class="button secondary js-interest" href="#contact" data-interest="Gut Health In and Out">Join Gut Health free trial</a>
           </div>
         </div>
 
-        <section class="quote-panel" aria-labelledby="quote-title">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">Decision workspace</p>
-              <h2 id="quote-title">Task profile</h2>
-            </div>
-            <span class="status-pill" id="confidenceBadge">Ready</span>
+        <div class="hero-showcase" aria-label="ZenTech product preview">
+          <div class="phone-frame career-phone">
+            <img
+              src="assets/get-me-a-job-miniprogram.png"
+              alt="Get Me a Job WeChat mini-program home screen"
+            />
           </div>
-
-          <form id="quoteForm" class="quote-form">
-            <label class="full">
-              Task
-              <textarea
-                name="task"
-                rows="5"
-                placeholder="Example: Build a SaaS landing page with auth, pricing, and Stripe checkout."
-              ></textarea>
-            </label>
-
-            <div class="form-grid">
-              <label>
-                Project context size
-                <select name="repoSize">
-                  <option value="small">Small, under 20 files</option>
-                  <option value="medium" selected>Medium, 20-120 files</option>
-                  <option value="large">Large, 120+ files</option>
-                </select>
-              </label>
-              <label>
-                Optimization goal
-                <select name="goal">
-                  <option value="best" selected>Best outcome</option>
-                  <option value="balanced">Balanced</option>
-                  <option value="fast">Fastest reliable</option>
-                  <option value="privacy">Privacy-first</option>
-                  <option value="efficient">Most token-efficient</option>
-                </select>
-              </label>
-              <label>
-                Task priority
-                <select name="priority">
-                  <option value="quality" selected>Quality</option>
-                  <option value="speed">Speed</option>
-                  <option value="efficiency">Cost efficiency</option>
-                  <option value="privacy">Privacy</option>
-                </select>
-              </label>
-              <label>
-                Tolerance for manual review
-                <select name="reviewTolerance">
-                  <option value="low" selected>Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                </select>
-              </label>
+          <div class="preview-stack">
+            <div class="mini-dashboard gut-preview">
+              <div class="dash-top">
+                <span>Gut Health</span>
+                <strong>82</strong>
+              </div>
+              <div class="trend-line" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="metric-grid">
+                <div><strong>Food</strong><span>76</span></div>
+                <div><strong>Stool</strong><span>88</span></div>
+              </div>
             </div>
-
-            <div class="action-row">
-              <button class="button primary" type="submit">Generate route</button>
-              <button class="button secondary" type="button" id="sampleTask">
-                Load sample task
-              </button>
-            </div>
-          </form>
-        </section>
-      </section>
-
-      <section class="results-layout" aria-live="polite">
-        <section class="recommendation-panel">
-          <div class="panel-heading compact">
-            <div>
-              <p class="eyebrow">Best route for this task</p>
-              <h2 id="routeTitle">Codex-guided combo</h2>
-            </div>
-            <span class="status-pill green" id="goalBadge">Best outcome</span>
-          </div>
-
-          <div class="score-strip">
-            <div>
-              <span>Expected quality</span>
-              <strong id="qualityScore">89</strong>
-            </div>
-            <div>
-              <span>Token efficiency</span>
-              <strong id="efficiencyScore">82</strong>
-              <small id="costDetail">1.1k tokens / quality pt</small>
-            </div>
-            <div>
-              <span>Developer effort</span>
-              <strong id="effortScore">Low</strong>
-            </div>
-            <div>
-              <span>Reliability</span>
-              <strong id="reliabilityScore">High</strong>
+            <div class="driver-card">
+              <span class="pulse-dot"></span>
+              <p>"Save the last 30 seconds."</p>
+              <small>Voice-first road safety prototype</small>
             </div>
           </div>
-
-          <ol class="route-timeline" id="routeTimeline"></ol>
-        </section>
-
-        <aside class="rationale-panel">
-          <p class="eyebrow">Route rationale</p>
-          <div class="rationale-list">
-            <article>
-              <h3>Why this route</h3>
-              <p id="whyRoute"></p>
-            </article>
-            <article>
-              <h3>Where it may fail</h3>
-              <p id="failRoute"></p>
-            </article>
-            <article>
-              <h3>When to switch</h3>
-              <p id="switchRoute"></p>
-            </article>
-          </div>
-        </aside>
-
-        <section class="comparison-panel full-width">
-          <div class="panel-heading compact">
-            <div>
-              <p class="eyebrow">Decision table</p>
-              <h2>Agent route comparison</h2>
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Agent route</th>
-                  <th>Best for</th>
-                  <th>Expected quality</th>
-                  <th>Token efficiency</th>
-                  <th>Developer effort</th>
-                  <th>Tradeoff</th>
-                </tr>
-              </thead>
-              <tbody id="comparisonRows"></tbody>
-            </table>
-          </div>
-        </section>
-      </section>
-
-      <section class="insight-grid" id="evidence">
-        <article class="insight-card">
-          <p class="eyebrow">Task profile</p>
-          <h3 id="taskType">Frontend full-stack</h3>
-          <p id="taskSummary">
-            UI implementation plus integration work. Use retrieval first, then
-            a strong coding agent for high-leverage edits.
-          </p>
-          <div class="tag-row" id="skillTags"></div>
-        </article>
-
-        <article class="insight-card">
-          <p class="eyebrow">Evidence</p>
-          <h3>Based on 4 similar tasks</h3>
-          <div class="evidence-list" id="benchmarkList"></div>
-        </article>
-
-        <article class="insight-card">
-          <p class="eyebrow">Guardrail</p>
-          <h3 id="policyVerdict">Approval before sensitive context</h3>
-          <p id="policyNote">
-            Require approval before sending repository context, customer data,
-            secrets, or production credentials to external providers.
-          </p>
-        </article>
-      </section>
-
-      <section class="how-section" id="how">
-        <div class="section-heading">
-          <p class="eyebrow">How AgentQuote works</p>
-          <h2>Four compact steps before an agent run.</h2>
         </div>
-        <div class="how-grid">
+      </section>
+
+      <section class="thesis" id="principles">
+        <p class="eyebrow">Why ZenTech</p>
+        <h2>AI can automate tasks. People still need judgment, trust, and care.</h2>
+        <div class="principle-grid">
           <article>
             <span>01</span>
-            <h3>Profile the task</h3>
-            <p>Classify the work by context size, ambiguity, skills, and review risk.</p>
+            <h3>Human Context</h3>
+            <p>Products should capture the real-life context that does not appear in a search result or generated answer.</p>
           </article>
           <article>
             <span>02</span>
-            <h3>Retrieve evidence</h3>
-            <p>Compare against similar completed tasks and observed route outcomes.</p>
+            <h3>Longitudinal Insight</h3>
+            <p>The strongest signals often come from patterns over time, especially in personal health and behavior.</p>
           </article>
           <article>
             <span>03</span>
-            <h3>Score routes</h3>
-            <p>Balance quality, reliability, effort, speed, privacy, and token value.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Monitor feedback</h3>
-            <p>Update recommendations as runs finish, fail, or need human review.</p>
+            <h3>Real-World Safety</h3>
+            <p>Useful AI should reduce friction in stressful moments without distracting people or overclaiming authority.</p>
           </article>
         </div>
       </section>
+
+      <section class="products" id="products">
+        <div class="section-heading">
+          <p class="eyebrow">Product portfolio</p>
+          <h2>Specific products for stressful human moments.</h2>
+        </div>
+
+        <article class="product-panel career">
+          <div class="product-copy">
+            <span class="status live">Live / Mini Program</span>
+            <h3>早点上岸 / Get Me a Job</h3>
+            <p class="product-line">AI can polish your application. Real mentors help you understand the room.</p>
+            <p>
+              A career-support marketplace for Chinese-speaking overseas students
+              and job seekers, connecting them with trusted working professionals
+              for CV review, mock interviews, industry context, referral guidance,
+              and confidence through the job search.
+            </p>
+            <ul class="feature-list">
+              <li>Verified mentor profiles and practical service categories</li>
+              <li>CV review, mock interview, career Q&A, and industry guidance</li>
+              <li>Human insight into team dynamics, workplace norms, and hidden context</li>
+            </ul>
+          </div>
+          <div class="product-visual career-visual">
+            <img
+              class="poster"
+              src="assets/get-me-a-job-social-poster.png"
+              alt="Chinese social poster about UK job market pressure"
+            />
+            <div class="mentor-card">
+              <span>Mentor session</span>
+              <strong>Mock interview + team context</strong>
+              <small>30-60 minutes, direct practical feedback</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-panel gut">
+          <div class="product-copy">
+            <span class="status published">Published App</span>
+            <img class="product-logo" src="assets/gut-health-logo.png" alt="In and Out logo" />
+            <h3>Gut Health In and Out</h3>
+            <p class="product-line">Digestive health is not a one-time snapshot. The signal is in the pattern.</p>
+            <p>
+              An AI gut-health companion that helps users track stool, food,
+              symptoms, and trends over time, turning daily digestive signals into
+              personal insights and future preventive health intelligence.
+            </p>
+            <ul class="feature-list">
+              <li>Stool, food, symptom, and lifestyle logging</li>
+              <li>Bristol classification, trend analytics, and personalized recommendations</li>
+              <li>AI gut-health coach with privacy-sensitive health tracking</li>
+            </ul>
+            <div class="product-actions">
+              <a class="button primary js-interest" href="#contact" data-interest="Gut Health In and Out">Join free trial list</a>
+              <a class="button secondary" href="https://gut-health-in-and-out.lovable.app" target="_blank" rel="noreferrer">Open app</a>
+            </div>
+          </div>
+          <div class="product-visual gut-screens">
+            <figure class="screenshot-card primary-shot">
+              <img src="assets/gut-health-track.png" alt="Gut Health app food tracking screen with AI analysis upload" />
+              <figcaption>Food, stool, and history tracking in one daily flow.</figcaption>
+            </figure>
+            <figure class="screenshot-card trend-shot">
+              <img src="assets/gut-health-trends.png" alt="Gut Health app trend chart showing food score and stool score" />
+              <figcaption>Trend views help users see patterns over time.</figcaption>
+            </figure>
+            <figure class="screenshot-card chat-shot">
+              <img src="assets/gut-health-chat.png" alt="Gut Health app chat screen with meal image and AI response" />
+              <figcaption>AI coach turns logged context into practical next steps.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <div class="future-grid">
+          <article class="future-card">
+            <span class="status upcoming">Upcoming</span>
+            <h3>Patient Experience Products</h3>
+            <p>
+              Software and hardware concepts focused on making healthcare easier
+              to understand, monitor, and live with.
+            </p>
+            <ul class="compact-list">
+              <li>Home monitoring and self-tracking</li>
+              <li>Appointment preparation and symptom explanation</li>
+              <li>Clearer journeys between daily life and clinical care</li>
+            </ul>
+          </article>
+
+          <article class="future-card dark">
+            <span class="status prototype">Prototype</span>
+            <h3>Smart Driver Audio Assistant</h3>
+            <p>
+              A voice-first road safety assistant for drivers, combining live
+              camera capture with hands-free incident saving and reporting workflows.
+            </p>
+            <div class="road-ui">
+              <div class="road-line"></div>
+              <div class="voice-chip">"Report that car"</div>
+              <small>Prepares evidence for user confirmation where legally supported.</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="trust">
+        <div>
+          <p class="eyebrow">Build philosophy</p>
+          <h2>Concrete products, careful claims.</h2>
+        </div>
+        <div class="trust-notes">
+          <p>
+            Health products are framed around tracking, patterns, and personal
+            insight rather than diagnosis or medical advice.
+          </p>
+          <p>
+            Driver-safety concepts require market-specific legal review, user
+            confirmation, and low-distraction interaction design.
+          </p>
+          <p>
+            Career products focus on guidance, context, and connection without
+            promising job outcomes or guaranteed referrals.
+          </p>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="contact-copy">
+          <p class="eyebrow">Early Access</p>
+          <h2>Become an early user.</h2>
+          <p>
+            Register your interest and we’ll email you when free trials or early
+            access become available.
+          </p>
+        </div>
+        <form class="interest-form" id="interestForm" novalidate>
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required aria-describedby="emailError" />
+            <span class="field-error" id="emailError"></span>
+          </label>
+          <label>
+            Name
+            <input name="name" type="text" autocomplete="name" />
+            <span class="field-error" aria-hidden="true"></span>
+          </label>
+          <label class="full">
+            I’m interested in
+            <select name="interest" required aria-describedby="interestError">
+              <option value="">Select a product</option>
+              <option>Get Me a Job / 早点上岸</option>
+              <option>Gut Health In and Out</option>
+              <option>Patient Experience</option>
+              <option>Driver Safety</option>
+              <option>Future ZenTech Products</option>
+              <option>Other</option>
+            </select>
+            <span class="field-error" id="interestError"></span>
+          </label>
+          <label class="full other-interest" id="otherInterestField" hidden>
+            Tell us what interests you
+            <input name="otherInterest" type="text" />
+          </label>
+          <label class="checkbox-label full">
+            <input name="consent" type="checkbox" value="Yes" required aria-describedby="consentError" />
+            <span>I’d like to receive early access invitations and product updates from ZenTech.</span>
+          </label>
+          <span class="field-error full" id="consentError"></span>
+          <p class="privacy-note full">Your information will only be used for early access invitations and relevant product updates.</p>
+          <button class="button primary full" id="submitInterest" type="submit">Register Interest</button>
+          <p class="form-note" id="formNote" role="status"></p>
+        </form>
+      </section>
     </main>
 
-    <footer>
-      <span>AgentQuote</span>
-      <span>Choose agent routes by outcome, effort, reliability, and token value.</span>
+    <footer class="site-footer">
+      <span>ZenTech</span>
+      <span>Technology good for humans.</span>
     </footer>
 
     <script src="script.js"></script>
