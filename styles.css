@@ -3,3 +3,42 @@
 @media(max-width:1050px){.hero{grid-template-columns:1fr}.gut-hero-visual{max-width:760px;width:100%}.section-intro,.milo-lead,.milo-system,.contact{grid-template-columns:1fr}.story-grid{grid-template-columns:1fr 1fr}.story-feature{grid-column:1/-1}.portfolio-grid{grid-template-columns:1fr}.system-copy{padding-left:0}.milo-system{grid-template-columns:1fr 1fr}.system-copy{grid-column:1/-1}}
 @media(max-width:760px){.site-header{grid-template-columns:1fr auto}.nav-links{display:none}.hero{padding-top:60px}.hero h1{font-size:clamp(3.25rem,16vw,5.2rem)}.gut-hero-visual{min-height:510px}.app-shot-main{right:20%;width:68%;height:73%}.app-shot-trends{width:63%;height:44%}.insight-chip{left:0;bottom:10%;max-width:78%}.story-grid,.milo-system,.milo-moments,.portfolio-grid,.contact,.interest-form{grid-template-columns:1fr}.story-feature{grid-column:auto;grid-template-columns:1fr!important}.story-feature img{height:240px}.story-number{margin-bottom:44px}.milo-lead{gap:28px}.milo-hero img{min-height:290px}.career-card{grid-template-columns:1fr;padding-right:24px;padding-left:24px}.career-card img{max-width:260px;justify-self:center}.full{grid-column:auto}.site-footer{grid-template-columns:1fr}.site-footer p,.site-footer>span{text-align:left}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Dark ZenTech art direction */
+:root{--ink:#f4f8f5;--muted:#9fb0aa;--paper:#09110f;--white:#101c19;--line:#294039;--green:#6cf1c5;--lime:#dff36b;--mint:#6cf1c5;--dark:#07100e;--shadow:0 28px 90px rgba(0,0,0,.38)}
+body{background:var(--paper);color:var(--ink)}
+.site-header{background:rgba(7,16,14,.88);border-color:rgba(108,241,197,.12)}
+.brand-mark{color:#07100e;background:var(--mint)}
+.nav-cta{color:#07100e;background:var(--mint)}
+.hero{background:radial-gradient(circle at 74% 48%,rgba(52,130,98,.28) 0,transparent 37%),linear-gradient(135deg,#07100e 0%,#0d1b17 56%,#0a1412 100%)}
+.hero h1 em,.hero .eyebrow,.proof-row b,.story-number{color:var(--mint)}
+.button.primary{color:#07100e;background:var(--mint);border-color:var(--mint)}
+.button.primary:hover{background:var(--lime);border-color:var(--lime)}
+.button.secondary{color:var(--ink);border-color:#547068}
+.button.secondary:hover{background:#152722}
+.hero-orbit{border-color:rgba(108,241,197,.21)}
+.app-shot{border-color:#020706}
+.insight-chip{background:#13231f;border-color:#294039}
+.spark{color:#07100e}
+.gut-story{background:#0d1815}
+.story-grid article{background:#12201c;border-color:#294039}
+.story-grid article{min-height:240px}
+.story-number{margin-bottom:42px}
+.story-feature{background:#143027!important}
+.story-feature img{border-color:#040907}
+.medical-note{color:#81958e}
+.milo{background:#050b09;border-top:1px solid #21332d}
+.milo-hero,.system-card,.milo-moments article{border-color:#294039}
+.portfolio{background:#0b1512}
+.career-card{background:#12201c;border:1px solid #294039}
+.career-card img{border-color:#030806}
+.status{color:var(--mint);background:#18352c}
+.principles-card{color:#07100e;background:var(--mint)}
+.principles-card .eyebrow{color:#174f3b}
+.principles-card li{border-color:rgba(7,16,14,.22)}
+.contact{background:#07100e;border-top:1px solid #21332d}
+.interest-form{background:#101c19;border-color:#294039}
+input,select{color:#edf5f1;background:#0a1411;border-color:#3b544b}
+input:focus,select:focus{border-color:var(--mint);outline-color:rgba(108,241,197,.16)}
+.checkbox-label{border-color:#3b544b}
+.site-footer{background:#050b09;border-color:#21332d}
